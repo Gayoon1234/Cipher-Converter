@@ -14,13 +14,25 @@
  */
  @import "bootstrap";
 
- .center {
+ .left {
     display: block;
-    margin-left: auto;
-    margin-right: auto 
+    margin-left: 15px;
+    margin-right: auto; 
  }
+ .right {
+   display: block;
+   margin-left: auto;
+   margin-right: 15px; 
+}
 
  body {
      background-color:rgb(19, 38, 41);
      color: yellow;
+ }
+
+ .centeredDiv {
+    margin: auto;
+    width: 50%;
+    padding: 20px;
+    text-align: center;
  }
