@@ -1,6 +1,14 @@
+<style>
+input{
+    margin:1px;
+}
+</style>
+
+<div style="height:10px"></div>
 <form action="/ciphers/vigenere" class="d-flex">
-<input type="input" class="form-control" placeholder="data" id="input" name="data" style="width:210%" required value="<%=@data%>">
+<input type="input" class="form-control" placeholder="data" id="input" name="data" style="width:210%;" required value="<%=@data%>">
 <input type="input" class="form-control" placeholder="key" id="input" name="key" required value="<%=@key%>">
-<input type="submit" value="Go!">
+<input type="submit" class="btn btn-outline-primary" value="Encode" name="encode">
+<input type="submit" class="btn btn-outline-primary" value="Decode" name="decode">
 </form>
 <p id="binaryOut"><%= @solution %></p>

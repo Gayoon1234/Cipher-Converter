@@ -27,7 +27,7 @@
 
  body {
      background-color:rgb(19, 38, 41);
-     color: yellow;
+     color: green;
  }
 
  .centeredDiv {
@@ -35,4 +35,20 @@
     width: 50%;
     padding: 20px;
     text-align: center;
+ }
+
+ .form-control {
+    background-color: rgb(17, 4, 49);
+    color: yellowgreen;
+ }
+
+ .form-control:focus {
+   background-color: rgb(17, 4, 49);
+   color: palevioletred;
+}
+
+
+ ::selection {
+   color: red;
+   background: yellow;
  }
