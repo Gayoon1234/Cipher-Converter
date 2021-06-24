@@ -22,6 +22,7 @@ class CiphersController < ApplicationController
   def vCipher(word, key)
     @alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
       word.upcase!
+      key.upcase!
       currentkey = -1
       sol = ""
       word.each_byte do |letter|
@@ -36,6 +37,7 @@ class CiphersController < ApplicationController
   def dvCipher(word, key)
     @alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     word.upcase!
+    key.upcase!
     currentkey = -1
     sol = ""
     word.each_byte do |letter|
