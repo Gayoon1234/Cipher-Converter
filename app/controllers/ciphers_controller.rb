@@ -25,12 +25,12 @@ class CiphersController < ApplicationController
       currentkey = -1
       sol = ""
       word.each_byte do |letter|
-          (sol += " "; next) if letter == 32
+          (sol += letter.chr; next) if letter < 65 || letter > 90
           currentkey += 1
           key_char = key[currentkey % key.length].bytes.shift
           sol << @alphabet[(letter+key_char)%26]
       end
-      sol
+      sol.to_s
   end
 
   def dvCipher(word, key)
@@ -39,12 +39,12 @@ class CiphersController < ApplicationController
     currentkey = -1
     sol = ""
     word.each_byte do |letter|
-        (sol << " "; next) if letter == 32
-        currentkey += 1
+      (sol += letter.chr; next) if letter < 65 || letter > 90
+      currentkey += 1
         key_char = key[currentkey % key.length].bytes.shift
         sol << @alphabet[(letter-key_char)%26]
     end
-    sol
+    sol.to_s
   end
 
 
