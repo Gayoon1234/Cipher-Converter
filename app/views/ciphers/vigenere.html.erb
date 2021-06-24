@@ -1,0 +1,6 @@
+<form action="/ciphers/vigenere" class="d-flex">
+<input type="input" class="form-control" placeholder="data" id="input" name="data" style="width:210%" required value="<%=@data%>">
+<input type="input" class="form-control" placeholder="key" id="input" name="key" required value="<%=@key%>">
+<input type="submit" value="Go!">
+</form>
+<p id="binaryOut"><%= @solution %></p>

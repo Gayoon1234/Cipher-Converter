@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'ciphers/vigenere'
+  get 'ciphers/ceaser'
+  get 'ciphers/rot13'
+  get 'ciphers/rot47'
+  get 'ciphers/randomSub'
   get '/hex', to: 'static_pages#hex'
   get '/binary', to: 'static_pages#binary'
   get '/home', to:'static_pages#home'
