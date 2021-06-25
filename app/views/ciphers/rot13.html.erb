@@ -1,2 +1,26 @@
-<h1>Ciphers#rot13</h1>
-<p>Find me in app/views/ciphers/rot13.html.erb</p>
+<body>
+<input type="text" class="form-control" placeholder="text" id="input" oninput="myFunction()">
+<p id="output"></p>
+</body>
+
+<script>
+function myFunction() {
+   document.getElementById("output").innerHTML = ceaserShift(document.getElementById("input").value,13);
+}
+
+function ceaserShift(string,shiftVal) {
+    return string.split('').map(function (char) {
+         
+         charCode = char.charCodeAt(0);
+         if(charCode >= 65 && charCode <=90){
+            charCode = (charCode + shiftVal - 65)%26 + 65;
+         }
+         else if(charCode >=97 &&  charCode <= 122){
+            charCode = (charCode + shiftVal - 97)%26 + 97;
+         }
+
+
+        return String.fromCharCode(charCode);
+    }).join('');
+}
+</script>
