@@ -1,24 +1,7 @@
-# README
+# Converters and Ciphers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is a passion project currently still in development. \
+It is a rails 6 project with ruby 3.0.1, however most of the current
+converters/ciphers are written in javascript. \
+\
+It is currently hosted at: https://vast-wave-08456.herokuapp.com/
