@@ -1,0 +1,14 @@
+<input type="text" class="form-control" placeholder="text" id="input" oninput="myFunction()">
+<p id="output"></p>
+
+<script>
+function myFunction() {
+   document.getElementById("output").innerHTML = getASCII(document.getElementById("input").value);
+}
+
+function getASCII(string) {
+    return string.split('').map(function (char) {
+        return char.charCodeAt(0);
+    }).join(' ');
+}
+</script>
