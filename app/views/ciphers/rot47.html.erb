@@ -1,2 +1,21 @@
-<h1>Ciphers#rot47</h1>
-<p>Find me in app/views/ciphers/rot47.html.erb</p>
+<input type="text" class="form-control" placeholder="text" id="input" oninput="myFunction()">
+
+<p id="output"></p>
+
+<script>
+function myFunction() {
+   document.getElementById("output").innerHTML = rot47(document.getElementById("input").value);
+}
+
+function rot47(string) {
+    return string.split('').map(function (char) {
+         
+         charCode = char.charCodeAt(0);
+         if(charCode >= 33 && charCode <=126){
+             charCode = (charCode-33+47)%94 + 33
+         }
+
+        return String.fromCharCode(charCode);
+    }).join('');
+}
+</script>
