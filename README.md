@@ -4,4 +4,18 @@ This is a passion project currently still in development. \
 It is a rails 6 project with ruby 3.0.1, however most of the current
 converters/ciphers are written in javascript. \
 \
-It is currently hosted at: https://vast-wave-08456.herokuapp.com/
+It is currently hosted at: https://vast-wave-08456.herokuapp.com/ \
+List of Ciphers/Converters \
+
+Converters \
+
+- Plaintext to Binary
+- Plaintext to Hex
+- Plaintext to ASCII (base 10)
+
+Ciphers \
+- Vigenere Cipher
+- Ceaser Cipher
+- ROT-13
+- ROT-47
+- Substitution Cipher

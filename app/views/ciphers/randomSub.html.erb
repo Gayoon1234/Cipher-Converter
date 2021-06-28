@@ -1,2 +1,43 @@
-<h1>Ciphers#randomSub</h1>
-<p>Find me in app/views/ciphers/randomSub.html.erb</p>
+<body>
+<form class="d-flex">
+<input type="text" class="form-control" placeholder="text" id="input" oninput="myFunction()" style="width:80%;">
+<input type="text" class="form-control" placeholder="Substitution Alphabet/Key" style="width:20%;" id="subAlphabet" oninput="myFunction()">
+</form>
+<p id="output"></p>
+</body>
+
+<script>
+function myFunction() {
+   document.getElementById("output").innerHTML = swap(document.getElementById("input").value);
+}
+
+function swap(string) {
+
+    substitutionAlphabet = document.getElementById("subAlphabet").value
+    if(substitutionAlphabet.length != 26){
+        return "Invalid Substitution Alphabet"
+    }
+
+
+
+    return string.split('').map(function (char) {
+         
+        
+        returnString = char;
+
+        ascii_val = char.charCodeAt(0)
+        if(ascii_val >= 97 && ascii_val <=122){
+            ascii_val -= "a".charCodeAt(0)
+            returnString = substitutionAlphabet[ascii_val]
+        }
+        else if(ascii_val >= 65 && ascii_val <= 90){
+            ascii_val -= "A".charCodeAt(0)
+            returnString = substitutionAlphabet[ascii_val]
+        }
+        
+
+
+        return returnString;
+    }).join('');
+}
+</script>
