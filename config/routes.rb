@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'ciphers/morse'
   get 'converters/ascii'
   get 'ciphers/vigenere'
   get 'ciphers/ceaser'

@@ -18,6 +18,9 @@ class CiphersController < ApplicationController
   def randomSub
   end
 
+  def morse
+  end
+
   #these methods need to handle punctuation
   def vCipher(word, key)
     @alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

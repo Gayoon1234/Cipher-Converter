@@ -1,0 +1,61 @@
+<form class="d-flex">
+<input type="text" class="form-control" placeholder="text" id="input" oninput="myFunction()">
+<input type="text" class="form-control"  style="width:3%;" value="." id="dots" oninput="myFunction()">
+<input type="text" class="form-control"  style="width:3%;" value="-" id="dashes" oninput="myFunction()">
+</form>
+<p id="output"></p>
+<script>
+function myFunction() {
+   document.getElementById("output").innerHTML = morse(document.getElementById("input").value);
+}
+
+function morse(string) {
+    var charCodes=new Array(36); 
+    charCodes["a"]=".-";
+    charCodes["b"]="-...";
+    charCodes["c"]="-.-.";
+    charCodes["d"]="-..";
+    charCodes["e"]=".";
+    charCodes["f"]="..-.";
+    charCodes["g"]="--.";
+    charCodes["h"]="....";
+    charCodes["i"]="..";
+    charCodes["j"]=".---";
+    charCodes["k"]="-.-";
+    charCodes["l"]=".-..";
+    charCodes["m"]="--";
+    charCodes["n"]="-.";
+    charCodes["o"]="---";
+    charCodes["p"]=".--.";
+    charCodes["q"]="--.-";
+    charCodes["r"]=".-.";
+    charCodes["s"]="...";
+    charCodes["t"]="-";
+    charCodes["u"]="..-";
+    charCodes["v"]="...-";
+    charCodes["w"]=".--";
+    charCodes["x"]="-..-";
+    charCodes["y"]="-.--";
+    charCodes["z"]="--..";
+    charCodes["1"]=".----";
+    charCodes["2"]="..---";
+    charCodes["3"]="...--";
+    charCodes["4"]="....-";
+    charCodes["5"]=".....";
+    charCodes["6"]="-....";
+    charCodes["7"]="--...";
+    charCodes["8"]="---..";
+    charCodes["9"]="----.";
+    charCodes["0"]="-----";
+    return string.split('').map(function (char) {
+         
+        morseChar = char;
+        if(char.toLowerCase() in charCodes){
+            morseChar = charCodes[char.toLowerCase()]
+        }
+
+        return morseChar;
+    }).join('/').replaceAll('.',document.getElementById('dots').value
+        ).replaceAll('-',document.getElementById('dashes').value);
+}
+</script>
