@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'analysis/LetterFrequency'
   get 'ciphers/morseDecoder'
   get 'ciphers/morse'
   get 'converters/ascii'

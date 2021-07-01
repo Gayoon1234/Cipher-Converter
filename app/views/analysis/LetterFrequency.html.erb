@@ -1,0 +1,32 @@
+<form class="d-flex">
+<input type="text" class="form-control" placeholder="text" id="input" oninput="myFunction()">
+</form>
+<p id="output"></p>
+
+<script>
+    function myFunction()
+    {
+        document.getElementById("output").innerHTML = frequencyAnalysis(document.getElementById("input").value);
+    }
+
+    function frequencyAnalysis(input){
+
+        var chars = {}; 
+        
+        output = input.split('').map(function (char) {
+
+        if(char == ","){
+            char = "&#44" //This seperates commas between frequencies with commas that are a part of the input
+        }
+         
+        if(char in chars){
+            chars[char] += 1
+        }else
+        {
+            chars[char] = 1
+        }
+        });
+
+        return JSON.stringify(chars).split(',').join(' <br>').replace(/(^{|}$)/g,"");
+    }
+</script>
