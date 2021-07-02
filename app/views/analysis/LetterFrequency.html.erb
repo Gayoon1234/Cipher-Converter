@@ -4,29 +4,35 @@
 <p id="output"></p>
 
 <script>
-    function myFunction()
-    {
+    function myFunction(){
         document.getElementById("output").innerHTML = frequencyAnalysis(document.getElementById("input").value);
     }
 
     function frequencyAnalysis(input){
-
         var chars = {}; 
-        
         output = input.split('').map(function (char) {
-
-        if(char == ","){
-            char = "&#44" //This seperates commas between frequencies with commas that are a part of the input
-        }
-         
-        if(char in chars){
-            chars[char] += 1
-        }else
-        {
-            chars[char] = 1
-        }
+            if(char == ","){
+                char = "&#44" //This seperates commas between frequencies with commas that are a part of the input
+            }
+            
+            if(char in chars){
+                chars[char] += 1
+            } else{
+                chars[char] = 1
+            }
         });
 
-        return JSON.stringify(chars).split(',').join(' <br>').replace(/(^{|}$)/g,"");
+    
+        var sortable = [];
+        for (var letter in chars) {
+            sortable.push([letter, chars[letter]]);
+        }
+
+        sortable.sort(function(a, b) {
+            return b[1] - a[1];
+        });
+
+        console.log(sortable.toString())
+        return sortable.join("<br>")
     }
 </script>
