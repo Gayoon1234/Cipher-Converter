@@ -1,7 +1,8 @@
 <form class="d-flex">
 <input type="text" class="form-control" placeholder="text" id="input" oninput="myFunction()">
 </form>
-<p id="output"></p>
+<table style="width:100%" id="output">
+</table>
 
 <script>
     function myFunction(){
@@ -10,9 +11,14 @@
 
     function frequencyAnalysis(input){
         var chars = {}; 
+        var total = 0;
         output = input.split('').map(function (char) {
             if(char == ","){
                 char = "&#44" //This seperates commas between frequencies with commas that are a part of the input
+            }
+
+           if(char != " "){
+                total++;
             }
             
             if(char in chars){
@@ -32,7 +38,16 @@
             return b[1] - a[1];
         });
 
-        console.log(sortable.toString())
-        return sortable.join("<br>")
+        for(var i=0; i<sortable.length;i++){
+            if(sortable[i][0] != " ")
+            sortable[i] += `,${((chars[sortable[i][0]]*100)/total).toPrecision(4)}%`;
+            else
+            sortable[i] += ","
+
+            sortable[i] = "<tr><td>" + sortable[i] + "</td></tr>"
+        }
+        
+        return "<tr><th>Letter</th><th>Frequency</th> <th>Percentage</th></tr>" +
+        sortable.join().replaceAll(",","</td><td>")
     }
 </script>
