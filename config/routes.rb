@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'analysis/findFactors'
+  get 'ciphers/ceaserSolver'
   get 'analysis/LetterFrequency'
   get 'ciphers/morseDecoder'
   get 'ciphers/morse'

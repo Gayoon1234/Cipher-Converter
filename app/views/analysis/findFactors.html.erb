@@ -1,0 +1,38 @@
+<input type="number" class="form-control" placeholder="number" id="input" oninput="myFunction()" style="width:100%;">
+<p id="output"></p>
+
+<script>
+function myFunction() {
+   document.getElementById("output").innerHTML = ceaserShift(document.getElementById("input").value);
+}
+
+function ceaserShift(string) {
+//    const factors = number => Array
+//     .from(Array(number + 1), (_, i) => i)
+//     .filter(i => number % i === 0)
+//    return factors(parseInt(string))
+
+    return string.length == 0 ? "":calculate(parseInt(string)) 
+
+}
+
+//https://stackoverflow.com/questions/22130043/trying-to-find-factors-of-a-number-in-js/43802308
+function calculate(num) {
+    
+    var half = Math.floor(num / 2), // Ensures a whole number <= num.
+        str = '1', // 1 will be a part of every solution.
+        i, j;
+    
+    // Determine our increment value for the loop and starting point.
+    num % 2 === 0 ? (i = 2, j = 1) : (i = 3, j = 2);
+    
+    for (i; i * i<= num; i += j) {
+        num % i === 0 ? str += ',' + i : false;
+    }
+
+    str += ',' + num; // Always include the original number.
+    return str;
+}
+
+
+</script>
