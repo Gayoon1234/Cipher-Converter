@@ -1,2 +1,8 @@
-<h1>Ciphers#ceaserSolver</h1>
-<p>Find me in app/views/ciphers/ceaserSolver.html.erb</p>
+<form class="d-flex" action="/ciphers/ceaserSolver">
+<input type="text" class="form-control" placeholder="text" name="input" style="width:90%;" required value="<%= @input %>">
+<input type="submit" class="form-control" style="width:10%;" value="Solve it!" id="shiftVal">
+</form>
+<% @answer.each do |shift| %>
+<%=shift%>
+<br>
+<%end%>
