@@ -86,6 +86,8 @@ class CiphersController < ApplicationController
 
         currentShift.split(" ").each do |word| 
           correctWords += 1 if words.include?(word) && word.length >2
+
+          #If the number of words is less than 10 uses 30% accurancy otherwise 20%
           (@answer.push(currentShift);return) if (total_words <= 10 && correctWords >= 3) || (total_words > 10 && correctWords > total_words/5)
         end
 
