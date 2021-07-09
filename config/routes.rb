@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ciphers/cistercian'
+  get 'tests/testPage'
   get 'analysis/findFactors'
   get 'ciphers/ceaserSolver'
   get 'analysis/LetterFrequency'

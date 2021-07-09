@@ -1,0 +1,112 @@
+<input type="number" class="form-control" placeholder="number" min=0, max=9999 id="input" oninput="myFunction()">
+<canvas class="centeredDiv" id="myCanvas" width="200" height="100"
+style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<script>
+function myFunction() {
+   draw_cistercian(document.getElementById("input").value);
+}
+
+function draw_cistercian(number) {
+
+    num = parseInt(number);
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if(num > 0 && num <= 9999){
+        ctx.beginPath();
+        ctx.moveTo(100,0);
+        ctx.lineTo(100,100);
+
+        for(i = number.length-1; i>=0;i--){
+            drawShape(parseInt(number[i]),number.length-1-i)
+        }
+
+        ctx.closePath();
+        ctx.stroke();
+    }
+}
+
+function drawShape(shape, quandrant){
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    const middle = 100;
+    const steepness = 25;
+    const minY = 1;
+    const maxY = 40
+
+    //This draws any required horizontal line
+    if(shape == 1 || shape == 2 || shape == 5 || shape == 7 || shape == 8 || 
+                                                                shape == 9 ){
+
+        increment = (shape != 2 && shape != 8) ? minY:maxY;
+
+        startX = middle;
+        Y = increment;
+        endX = middle + steepness;
+
+        if(quandrant == 1 || quandrant == 3){
+            endX = middle - steepness;
+        }
+
+
+        if(quandrant == 3 || quandrant == 2){
+            Y = canvas.height - increment;
+        }
+
+        ctx.moveTo(startX,Y);
+        ctx.lineTo(endX,Y);
+
+        if(shape == 9){
+            Y2 = (Y == minY) ? maxY: canvas.height - maxY
+            ctx.moveTo(startX,Y2);
+            ctx.lineTo(endX,Y2);
+        }
+    }
+
+    //This draws any required diagonal line
+    if(shape == 3 || shape == 4 || shape == 5){
+                
+        startX = middle;
+        endX = middle + steepness
+        startY = (shape == 3) ? minY:maxY;
+        endY = (startY == minY) ? maxY:minY;
+
+        if(quandrant == 1 || quandrant == 3){
+            endX = middle - steepness;
+        }
+
+        if(quandrant == 3 || quandrant == 2){
+            startY = canvas.height - startY
+            endY = canvas.height - endY
+        }
+
+        ctx.moveTo(startX,startY);
+        ctx.lineTo(endX,endY);
+    }
+
+    //This draws any required vertical line
+    if(shape == 6 || shape == 7 || shape == 8 || shape == 9){
+        X = middle + steepness
+        startY = minY;
+        endY = maxY;
+
+        if(quandrant == 1 || quandrant == 3){
+            X = middle - steepness;
+        }
+
+        if(quandrant == 3 || quandrant == 2){
+            startY = canvas.height - startY;
+            endY = canvas.height - endY;
+        }
+
+        ctx.moveTo(X,startY);
+        ctx.lineTo(X,endY);
+    }
+
+}
+</script>

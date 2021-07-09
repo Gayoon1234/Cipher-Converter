@@ -21,6 +21,7 @@ Ciphers
 - ROT-47
 - Substitution Cipher
 - Morse code encoder/decoder (with customisable options for dots and dashes)
+- Cistercian Cipher (Visual Tool)
 
 Analysis Tools
 - Dynamic Frequency Analysis tool
