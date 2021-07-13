@@ -22,6 +22,8 @@ Ciphers
 - Substitution Cipher
 - Morse code encoder/decoder (with customisable options for dots and dashes)
 - Cistercian Cipher (Visual Tool)
+- Pigpen Cipher (Visual Tool)
+
 
 Analysis Tools
 - Dynamic Frequency Analysis tool

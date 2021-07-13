@@ -40,8 +40,9 @@
 
  .canvasImage {
    margin: auto;
-   height: 50%;
+   width: 50%;
    padding: 20px;
+   overflow-y: scroll;
 }
 
  .form-control {
