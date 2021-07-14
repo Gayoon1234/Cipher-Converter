@@ -1,8 +1,10 @@
 <input type="input" class="form-control" placeholder="number" min=0, max=9999 id="input" oninput="myFunction()">
 
-<canvas class="canvasImage" id="myCanvas" width="800" height="600" style="border:1px">
+<div style="display:flex">
+<canvas class="canvasImage" id="myCanvas" width="1200" height="50" style="border:1px">
 Your browser does not support the canvas element.
 </canvas>
+</div>
 <script>
 function myFunction() {
    draw_pigpen(document.getElementById("input").value);
@@ -13,7 +15,8 @@ function draw_pigpen(letters) {
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
 
-    canvas.style = "position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto; border:2px solid #c3c3c3;";
+    canvas.style = "position: flex; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto;";
+    canvas.height = 25*Math.ceil(letters.length/48);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.globalAlpha = 1
@@ -38,15 +41,26 @@ function drawShape(letter, i ){
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
 
-    if(i >= 60){
-        console.log("First row filled")
+    if(i < 0){
+        console.log("max chars used")
     }else{
-        left = (i%8)*100+5
-        right = left + 100-10
-        up = 100*Math.floor((i/8))+5
-        bot = up + 100 -10
-        midY = (up+bot)/2
-        midX = (left + right)/2
+
+        scale = 25;
+        columns = 48;
+
+        left = (i%columns)*scale+5/2;
+        right = left + scale-10/2;
+        up = scale*Math.floor((i/columns))+5/2;
+        bot = up + scale -10/2;
+        midY = (up+bot)/2;
+        midX = (left + right)/2;
+
+    // if(canvas.height < bot){
+    //     canvas.height += 50;
+    //     drawShape(letter,i);
+    // }
+
+    
 
     if(letter.match(/[a-fj-o]{1}/i)  ){
         ctx.moveTo(left,bot);
@@ -69,7 +83,7 @@ function drawShape(letter, i ){
     }
 
     if(letter.match(/[j-rw-z]{1}/i)  ){
-        ctx.fillRect(midX-2.5,midY-2.5,5,5);
+        ctx.fillRect(midX-3/2,midY-3/2,3,3);
     }
 
     if(letter.match(/[s-z]{1}/i)  ){
@@ -99,8 +113,8 @@ function drawShape(letter, i ){
     }
 
 
-      ctx.font = "30px Arial";
-      ctx.fillText(letter, left, bot);
+    //   ctx.font = "30px Arial";
+    //   ctx.fillText(letter, left, bot);
 
     }
 }
