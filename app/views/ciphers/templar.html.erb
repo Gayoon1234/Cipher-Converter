@@ -1,0 +1,164 @@
+<input type="input" class="form-control" placeholder="letters"  id="input" oninput="myFunction()">
+
+<div style="display:flex">
+<canvas class="canvasImage" id="myCanvas" width="1200" height="50" style="border:1px">
+Your browser does not support the canvas element.
+</canvas>
+</div>
+<script>
+function myFunction() {
+   draw_templar(document.getElementById("input").value);
+}
+
+function draw_templar(letters) {
+
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    canvas.style = "position: flex; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto;";
+    canvas.height = 25*Math.ceil(letters.length/48);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 1
+    ctx.strokeStyle = "rgb(154, 205, 50)"
+    ctx.fillStyle = "rgb(154, 205, 50)";
+
+    ctx.lineWidth = 2.5;
+
+    if(true){
+        ctx.beginPath();
+ 
+        for(i = 0; i<letters.length;i++){
+            drawShape(letters[i],i)
+        }
+
+        ctx.closePath();
+        ctx.stroke();
+    }
+}
+
+function drawShape(letter, i ){
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    if(i < 0){
+        console.log("max chars used")
+    }else{
+
+        scale = 25;
+        columns = 48;
+
+        left = (i%columns)*scale+5/2;
+        right = left + scale-10/2;
+        up = scale*Math.floor((i/columns))+5/2;
+        bot = up + scale -10/2;
+        midY = (up+bot)/2;
+        midX = (left + right)/2;
+
+
+        if(letter.match(/[o-z]/i)){
+            ctx.fillRect(midX-3/2,midY-3/2,3,3);
+        }
+
+        if(letter.match(/[aeos]/i)){
+           draw_tri_vert(left,up,midX,bot,right,letter.match(/[es]/i))
+        }
+
+        if(letter.match(/[cgqu]/i)){
+            draw_tri_vert(left,bot,midX,up,right,letter.match(/[gu]/i))
+        }
+
+        if(letter.match(/[dhrv]/i)){
+            draw_tri_hori(left,bot,right,midY,up,letter.match(/[hv]/i))
+        }
+
+        if(letter.match(/[bfpt]/)){
+            draw_tri_hori(right,bot,left,midY,up,letter.match(/[ft]/i))
+        }
+
+        if(letter.match(/[iw]/i)){
+            q3Y = .75*midY
+            draw_quad(midX,bot,right,q3Y,up,left)   
+        }
+
+        if(letter.match(/[ly]/i)){
+            q1Y = 1.25*midY
+            draw_quad(midX,bot,right,q1Y,up,left)
+        }
+
+        if(letter.match(/[xk]/i)){
+            q1X = midX+5
+            ctx.moveTo(left, midY)
+            ctx.lineTo(q1X,bot)  
+            ctx.lineTo(right,midY) 
+            ctx.lineTo(q1X,up)
+            ctx.lineTo(left,midY) 
+        }
+
+        if(letter.match(/[zm]/i)){
+            q3X = midX-5
+            ctx.moveTo(left, midY)
+            ctx.lineTo(q3X,bot)  
+            ctx.lineTo(right,midY) 
+            ctx.lineTo(q3X,up)
+            ctx.lineTo(left,midY) 
+        }
+
+        if(letter.match(/n/i)){
+            ctx.moveTo(left,up)
+            ctx.lineTo(right,bot)
+            ctx.moveTo(right,up)
+            ctx.lineTo(left,bot)
+        }
+
+
+
+
+       
+        
+
+
+
+
+
+    }
+}
+
+function draw_tri_vert(a,b,c,d,e, join=true){
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    ctx.moveTo(a,b);
+    ctx.lineTo(c, d);
+    ctx.moveTo(c,d);
+    ctx.lineTo(e, b);
+
+    if(join){
+    ctx.lineTo(a,b);
+    }
+}
+
+function draw_tri_hori(a,b,c,d,e,join=true){
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.moveTo(a,b);
+    ctx.lineTo(c,d);
+    ctx.moveTo(c,d);
+    ctx.lineTo(a,e);
+
+    if(join){
+        ctx.lineTo(a,b);
+    }
+}
+
+function draw_quad(a,b,c,d,e,f){
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    
+    ctx.moveTo(a,b)
+    ctx.lineTo(c,d)
+    ctx.lineTo(a,e)
+    ctx.lineTo(f,d)
+    ctx.lineTo(a,b)
+}
+</script>

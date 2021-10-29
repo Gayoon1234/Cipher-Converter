@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'ciphers/templar'
   get 'ciphers/pigpen'
   get 'ciphers/cistercian'
   get 'tests/testPage'
