@@ -23,10 +23,14 @@ Ciphers
 - Morse code encoder/decoder (with customisable options for dots and dashes)
 - Cistercian Cipher (Visual Tool)
 - Pigpen Cipher (Visual Tool)
+- Knights' Templar Cipher (Visual Tool)
 
 
 Analysis Tools
 - Dynamic Frequency Analysis tool
 - Prime Factorisation (This will eventually be re-written in ruby)
+
+Misc
+- Image Steganography
 
 <sup>*These tools are written in ruby, the others are in javascript</sup>
