@@ -1,0 +1,66 @@
+
+<input type='file' />
+
+<div style="display:flex">
+<canvas class="canvasImage" id="myCanvas" width="1200" height="500" style="border:1px">
+Your browser does not support the canvas element.
+</canvas>
+</div>
+
+<script>
+window.addEventListener('load', function() {
+  document.querySelector('input[type="file"]').addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+          var img = document.querySelector('img');
+          img.onload = () => {
+              URL.revokeObjectURL(img.src);  // no longer needed, free memory
+          }
+
+          img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+          load_image(img.src)
+      }
+  });
+});
+
+function load_image(img_url){
+
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+    cover_image = new Image();
+    cover_image.src = img_url;
+    cover_image.onload = function(){
+        canvas.width = this.width;
+        canvas.height= this.height;
+        ctx.drawImage(cover_image, 0, 0,this.width,this.height);
+        getPixels();
+    }
+    ctx.closePath();
+    ctx.stroke();
+
+    canvas.style = "position: flex; top: 0px; left: 0px; right: 0px; bottom: 0px; margin: auto;";
+
+}
+
+function getPixels(){
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    // console.log(canvas.width)
+    //  for(var i=0;i<canvas.width;i++){
+    //     console.log(ctx.getImageData(i,4,1,1).data);
+    // }
+
+    const imgData = ctx.getImageData(0,0,canvas.width, canvas.height);
+    const data = imgData.data;
+
+    for(var i =0; i<data.length && i<100;i+=4){
+        console.log(`red: ${data[i]}`)
+        console.log(`blue: ${data[i+1]}`)
+        console.log(`green: ${data[i+2]}`)
+    }
+}
+</script>
+
+<br><img id="myImg" src="#" hidden>
