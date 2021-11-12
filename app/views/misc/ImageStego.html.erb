@@ -1,8 +1,14 @@
 
+<h1>Encoder</h1>
+<input type="input" class="form-control" placeholder="text"  id="input">
+<br>
 <input type='file' />
+<p id="encoderOut"></p>
+
+
 
 <div style="display:flex">
-<canvas class="canvasImage" id="myCanvas" width="1200" height="500" style="border:1px">
+<canvas class="canvasImage" id="myCanvas" width="1200" height="0" style="border:1px">
 Your browser does not support the canvas element.
 </canvas>
 </div>
@@ -47,20 +53,117 @@ function getPixels(){
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
 
-    // console.log(canvas.width)
-    //  for(var i=0;i<canvas.width;i++){
-    //     console.log(ctx.getImageData(i,4,1,1).data);
-    // }
-
+   
     const imgData = ctx.getImageData(0,0,canvas.width, canvas.height);
     const data = imgData.data;
 
-    for(var i =0; i<data.length && i<100;i+=4){
-        console.log(`red: ${data[i]}`)
-        console.log(`blue: ${data[i+1]}`)
-        console.log(`green: ${data[i+2]}`)
+    var txt = document.getElementById("input").value
+    console.log(txt)
+
+    var txtBin = ""
+    for (var i = 0; i < txt.length; i++) {
+      txtBin += txt[i].charCodeAt(0).toString(2) //+ " ".charCodeAt(0).toString(2);
     }
+
+    console.log(txtBin)
+    console.log(Math.ceil(txtBin.length/3.0))
+
+    var index = 0
+
+    for(var i =0; index<txtBin.length;i+=4){
+        console.log(`red(2): ${data[i].toString(2)}`)
+        console.log(`red(10): ${data[i]}`)
+        console.log(`txt[${i}]: ${txtBin[index]}`)
+
+        // console.log(`blue: ${data[i+1]}`)
+        // console.log(`green: ${data[i+2]}`)
+
+        newBinary = (data[i]>>1).toString(2)+txtBin[index]
+        index++;
+        console.log(`${newBinary}`)
+
+        data[i] = parseInt(newBinary,2)
+        console.log(`${data[i]}`)
+        console.log(`i: ${i}\n***`)
+
+        g =  (data[i+1]>>1).toString(2)+txtBin[index]
+        index++;
+        data[i+1] = parseInt(g,2)
+
+        b =  (data[i+2]>>1).toString(2)+txtBin[index]
+        index++;
+        data[i+2] = parseInt(b,2)
+    }
+    ctx.putImageData(imgData, 0, 0);
+    document.getElementById("encoderOut").innerHTML = `Encoded ${txt} with length ${txtBin.length}`
+
 }
 </script>
+
+<h1>Decoder</h1>
+<div class="d-flex">
+<input type="number" class="form-control" placeholder="length of message"  id="length" style="width:90%">
+<input type="submit" class="form-control" style="width:10%;" value="Decode!" id="btnLength" >
+</div>
+<p id="decoderOut"></p>
+
+<script>
+
+document.getElementById("btnLength").onclick = function() {
+    var length = document.getElementById("length").value
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    const imgData = ctx.getImageData(0,0,canvas.width, canvas.height);
+    const data = imgData.data;
+
+    console.log(data.slice(0,10))
+
+   readin = 0 
+   output = ""
+    for (var i = 0; readin <= length; i += 4) {
+        // data[i]     = 255 - data[i];     // red
+        // data[i + 1] = 255 - data[i + 1]; // green
+        // data[i + 2] = 255 - data[i + 2]; // blue
+
+    // console.log(data[i].toString(2))
+    // console.log(data[i+1].toString(2))
+    // console.log(data[i+2].toString(2))
+
+        output += "" + data[i].toString(2).slice(-1)
+        output += "" + data[i+1].toString(2).slice(-1)
+        output += "" + data[i+2].toString(2).slice(-1)
+        readin += 3;
+     }
+     console.log(output)
+
+    let arr = []
+    for(var i=0;i<output.length-output.length%7;i+=7){
+
+        newElement = ""
+        for(var j=i; j-i<7;j++){
+            newElement += output[j]
+        }
+        arr.push(newElement)
+        
+    }
+
+    console.log(arr);
+
+    decodedText = ""
+    for(var i = 0; i<arr.length;i++){
+        decodedText += String.fromCharCode(parseInt(arr[i],2));
+    }
+
+     document.getElementById("decoderOut").innerHTML = `Decoded: ${decodedText}`
+
+
+
+
+
+};
+
+</script>
+
+
 
 <br><img id="myImg" src="#" hidden>
