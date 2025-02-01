@@ -1,10 +1,16 @@
+
+# Final Update
+This repository is no longer being worked on :(
+With the exception of the Vigenere Cipher all other 
+cipers can be directly implemented in any JavaScript based framework.
+
 # Converters and Ciphers
 
-This is a passion project currently still in development. \
+~This is a passion project currently still in development.~ \
 It is a rails 6 project with ruby 3.0.1, however most of the current
 converters/ciphers are written in javascript. \
 \
-It is currently hosted at: https://vast-wave-08456.herokuapp.com/ \
+~It is currently hosted at: https://vast-wave-08456.herokuapp.com/~ \
 List of Ciphers/Converters 
 
 Converters 
